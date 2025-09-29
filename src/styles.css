@@ -1,0 +1,173 @@
+/* Base CSS Variables */
+:root {
+  /* Static Colors */
+  --static-white: 255 255 255;  /* #FFFFFF - always white in both themes */
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.8125rem;  /* 13px */
+  --font-size-md: 0.875rem;   /* 14px */
+
+  /* Font Weights */
+  --font-weight-book: 450;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Font Family */
+  --font-family-global: "Suisse Intl", sans-serif;
+}
+
+/* Light Theme (default) */
+:root {
+  /* Colors - Surface */
+  --surface-section: 247 248 248;  /* #F7F8F8 */
+  --surface-tile: 255 255 255;     /* #FFFFFF */
+  --surface-accent-purple: 136 77 190;  /* #884DBE */
+  --surface-overlay: 255 255 255;  /* #FFFFFF */
+  --surface-action: 255 255 255;   /* #FFFFFF */
+  --surface-action-hover: 237 238 241;  /* #EDEEF1 */
+
+  /* Colors - Content */
+  --content-primary: 37 39 44;     /* #25272C */
+  --content-secondary: 74 78 90;   /* #4A4E5A */
+  --content-tertiary: 107 114 128; /* #6B7280 */
+
+  /* Border */
+  --gradient-border: rgba(26, 31, 41, 0.08);
+  --border-border-flat: 222 225 229;  /* #DEE1E5 */
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Colors - Surface */
+  --surface-section: 14 17 22;     /* #0E1116 */
+  --surface-tile: 22 26 34;        /* #161A22 */
+  --surface-accent-purple: 136 77 190;  /* #884DBE */
+  --surface-overlay: 22 26 34;     /* #161A22 */
+  --surface-action: 26 31 41;      /* #1A1F29 */
+  --surface-action-hover: 32 39 50;  /* #202732 */
+
+  /* Colors - Content */
+  --content-primary: 255 255 255;   /* #FFFFFF */
+  --content-secondary: 182 186 195; /* #B6BAC3 */
+  --content-tertiary: 142 149 162;  /* #8E95A2 */
+
+  /* Border */
+  --gradient-border: hsla(0, 0%, 100%, 0.16);
+  --border-border-flat: 56 58 66;  /* #383842 */
+}
+
+/* Core Styles */
+body {
+  font-family: var(--font-family-global);
+  font-size: var(--font-size-md);
+}
+
+/* Background Colors */
+.bg-surface-section {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--surface-section) / var(--tw-bg-opacity));
+}
+
+.bg-surface-tile {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--surface-tile) / var(--tw-bg-opacity));
+}
+
+.bg-surface-action {
+  background-color: transparent;
+}
+
+.hover\:bg-surface-action-hover:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--surface-action-hover) / var(--tw-bg-opacity));
+}
+
+.bg-surface-accent-purple {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--surface-accent-purple) / var(--tw-bg-opacity));
+}
+
+/* Border */
+.border-gradient-border {
+  border-color: var(--gradient-border);
+}
+
+/* Text Colors */
+.text-content-primary {
+  --tw-text-opacity: 1;
+  color: rgb(var(--content-primary) / var(--tw-text-opacity));
+}
+
+.text-content-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(var(--content-secondary) / var(--tw-text-opacity));
+}
+
+.text-content-tertiary {
+  --tw-text-opacity: 1;
+  color: rgb(var(--content-tertiary) / var(--tw-text-opacity));
+}
+
+/* Text Sizes */
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+/* Font Weights */
+.font-book {
+  font-weight: var(--font-weight-book);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Utility Classes */
+.border {
+  border-width: 1px;
+}
+
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-shadow);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Theme Transition */
+:root {
+  /* Add smooth transitions when theme changes */
+  --theme-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+body {
+  transition: var(--theme-transition);
+}
+
+.bg-surface-section,
+.bg-surface-tile,
+.border-gradient-border,
+.text-content-primary,
+.text-content-secondary,
+.text-content-tertiary {
+  transition: var(--theme-transition);
+}
