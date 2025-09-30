@@ -1,5 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Point } from "./CustomBrushLineChart";
+
+// ==========================
+// Types
+// ==========================
+interface Point {
+  x: string | number;
+  [key: string]: any;
+}
 
 // ==========================
 // Utilities

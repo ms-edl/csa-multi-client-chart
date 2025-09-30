@@ -1,4 +1,4 @@
-# Multi-Device Latency Chart Prototype
+# Multi-device latency chart prototype
 
 This repository contains a prototype implementation of a multi-device latency visualization chart using Recharts. This is a **proof of concept** and requires additional optimization and hardening before production use.
 
@@ -12,39 +12,33 @@ The prototype demonstrates:
 - Band-specific line styles (solid, dashed, dotted)
 - Interactive device filtering
 
-## ⚠️ Prototype Limitations
+## ⚠️ Prototype limitations
 
-### Performance Considerations
+### Performance considerations
 
-1. **Multiple Chart Instances**
-- Current implementation creates separate resize observers for each chart
-- Each chart maintains its own state and event handlers
-- Multiple charts on the same page may cause performance degradation
-- Recommendation: Implement shared resources pattern for multiple chart instances
-
-2. **Brush Component**
+1. **Brush component**
 - Heavy DOM measurements during drag operations
 - Synchronous calculations during brush interactions
 - Multiple state updates during interactions
 - Recommendation: Implement throttling and batched updates
 
-3. **Data Processing**
+3. **Data processing**
 - Synchronous data transformations for band splitting
 - Large datasets may cause rendering delays
 - No data virtualization implemented
 - Recommendation: Implement data windowing and virtualization
 
-4. **Style System**
+4. **Style system**
 - Heavy reliance on CSS-in-JS calculations
 - Theme changes trigger full re-renders
 - Multiple duplicate style definitions
 - Recommendation: Implement style caching and shared theme context
 
-## CSS Variable Usage
+## CSS variable usage
 
 The project uses a combination of Tailwind CSS and custom CSS variables. Key variable categories:
 
-### Theme Variables
+### Theme variables
 ```css
 :root {
   /* Spacing */
@@ -69,7 +63,7 @@ The project uses a combination of Tailwind CSS and custom CSS variables. Key var
 }
 ```
 
-### Theme-Specific Colors
+### Theme-specific colors
 ```css
 .main-light {
   --background: 0 0% 100%;
@@ -84,57 +78,22 @@ The project uses a combination of Tailwind CSS and custom CSS variables. Key var
 }
 ```
 
-## Setup and Development
-
-1. Install dependencies:
-\`\`\`bash
-npm install
-\`\`\`
-
-2. Start development server:
-\`\`\`bash
-npm run dev
-\`\`\`
-
-3. Build for production:
-\`\`\`bash
-npm run build
-\`\`\`
-
-## Production Readiness Checklist
-
-Before moving to production, address the following:
-
-- [ ] Implement shared resource pattern for multiple charts
-- [ ] Add data virtualization for large datasets
-- [ ] Optimize brush component performance
-- [ ] Add error boundaries and fallbacks
-- [ ] Implement comprehensive testing
-- [ ] Add accessibility features
-- [ ] Optimize bundle size
-- [ ] Add performance monitoring
-- [ ] Implement proper TypeScript strict mode
-- [ ] Add proper documentation
-- [ ] Implement proper loading states
-- [ ] Add proper error handling
-- [ ] Optimize style system
-
-## Data Format
+## Data format
 
 The chart accepts data in two formats:
 
-### CSV Format
+### CSV format
 \`\`\`csv
 timestamp,device_id,device_name,latency_ms,band
 2025-08-13 00:00:00,dev-1,ARCADYAN SPEEDHOMEWLAN,7.0,2.4
 \`\`\`
 
-### TSV Format
+### TSV format
 \`\`\`tsv
 2025-08-13 00:00:00	dev-1	ARCADYAN SPEEDHOMEWLAN	7.0
 \`\`\`
 
-## Component Architecture
+## Component architecture
 
 The main components are:
 - `MultiDeviceLatencyChart`: Main chart component
@@ -142,36 +101,25 @@ The main components are:
 - `ThemeProvider`: Theme context provider
 - `AnimatedThemeToggle`: Theme switcher
 
-## Known Issues
+## Known issues
 
-1. Memory Leaks:
-   - Resize observers may not be properly cleaned up
+1. Memory leaks:
+   - Resise observers may not be properly cleaned up
    - Event listeners might persist after component unmount
 
-2. Performance Issues:
+2. Performance issues:
    - Large datasets cause rendering delays
    - Multiple charts affect overall performance
    - Theme changes trigger unnecessary re-renders
 
-3. Style Issues:
+3. Style issues:
    - Some styles are hardcoded and not theme-aware
    - CSS-in-JS performance impact
    - Duplicate style definitions
 
-## Contributing
+4. Multiple chart instances:
+   - Current implementation creates separate resize observers for each chart
+   - Each chart maintains its own state and event handlers
+   - Multiple charts on the same page may cause performance degradation
+   - Recommendation: Implement shared resources pattern for multiple chart instances
 
-This is a prototype repository. For production implementation:
-
-1. Fork the repository
-2. Address the production readiness checklist
-3. Implement proper testing
-4. Optimize performance
-5. Add proper documentation
-
-## License
-
-MIT
-
----
-
-**Note**: This is a prototype implementation. Use in production at your own risk. Performance optimizations and proper error handling are required before production use.
