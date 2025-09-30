@@ -1006,6 +1006,7 @@ export default function MultiDeviceLatencyChart() {
                     if (isolatedDevice === id) {
                       // If this device is isolated, clicking it shows all devices
                       setIsolatedDevice(null);
+                      setSelectedClients(new Set()); // Reset to show all devices
                     } else if (e.altKey) {
                       // Alt/Option + click for isolation
                       setIsolatedDevice(id);
@@ -1054,11 +1055,8 @@ export default function MultiDeviceLatencyChart() {
                 style={{ padding: "4px 8px" }}
                 onClick={() => {
                   setHoveredDevice(null); // Clear hover state when showing all devices
-                  if (isolatedDevice) {
-                    setIsolatedDevice(null); // Exit isolation mode
-                  } else {
-                    setSelectedClients(new Set()); // Show all devices
-                  }
+                  setIsolatedDevice(null); // Exit isolation mode
+                  setSelectedClients(new Set()); // Show all devices
                 }}
               >
                 <span>
@@ -1069,7 +1067,7 @@ export default function MultiDeviceLatencyChart() {
               </div>
               {/* Tooltip anchored at the bottom */}
               {!isolatedDevice && (
-                <div className="hidden group-hover:block absolute left-1/2 -translate-x-1/2 w-64 p-3 bg-surface-tile rounded-lg shadow-md border border-gradient-border" style={{ top: "calc(100% + 8px)" }}>
+                <div className="hidden group-hover:block absolute left-1/2 -translate-x-1/2 w-64 p-3 bg-surface-tile rounded-lg shadow-md border border-gradient-border" style={{ top: "calc(100% + 8px)", zIndex: 50 }}>
                   <div className="text-xs font-medium mb-2 text-content-primary">Hidden devices:</div>
                   <div className="space-y-2">
                     {deviceIds.map((id) => {
