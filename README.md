@@ -22,7 +22,7 @@ The prototype demonstrates:
 - Multiple state updates during interactions
 - Recommendation: Implement throttling and batched updates
 
-3. **Data processing**
+2. **Data processing**
 - Synchronous data transformations for band splitting
 - Large datasets may cause rendering delays
 - No data virtualization implemented
@@ -95,16 +95,34 @@ timestamp,device_id,device_name,latency_ms,band
 
 ## Component architecture
 
-The main components are:
-- `MultiDeviceLatencyChart`: Main chart component
-- `ExternalBrush`: Custom brush implementation
-- `ThemeProvider`: Theme context provider
-- `AnimatedThemeToggle`: Theme switcher
+The application follows a hierarchical component structure:
+
+### Core components
+- `LatencyPage`: Root component that provides layout and theme context
+- `MultiDeviceLatencyChart`: Main chart component with data processing and state management
+- `ExternalBrush`: Custom brush implementation for time range selection
+
+### Theme system
+- `ThemeProvider`: Context provider for theme state and color schemes
+- `AnimatedThemeToggle`: Interactive theme switcher with animations
+- `ThemeContext`: Shared theme state and color definitions
+
+### Data flow
+- Data is loaded and processed in `MultiDeviceLatencyChart`
+- Chart state (filters, selection, hover) is managed internally
+- Theme state is managed globally through context
+- Brush state is self-contained within `ExternalBrush`
+
+### State management
+- Theme: Global context
+- Chart data: Local state with data processing
+- Filters: Component-level state with device and band filtering
+- Brush: Isolated state with external event callbacks
 
 ## Known issues
 
 1. Memory leaks:
-   - Resise observers may not be properly cleaned up
+  - Resize observers may not be properly cleaned up
    - Event listeners might persist after component unmount
 
 2. Performance issues:
@@ -118,7 +136,7 @@ The main components are:
    - Duplicate style definitions
 
 4. Multiple chart instances:
-   - Current implementation creates separate resize observers for each chart
+    - Current implementation creates separate resize observers for each chart
    - Each chart maintains its own state and event handlers
    - Multiple charts on the same page may cause performance degradation
    - Recommendation: Implement shared resources pattern for multiple chart instances
