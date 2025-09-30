@@ -1,5 +1,7 @@
 # Multi-device latency chart prototype
 
+🔗 **[Live Preview](https://chart-for-ao.vercel.app/)**
+
 This repository contains a prototype implementation of a multi-device latency visualization chart using Recharts. This is a **proof of concept** and requires additional optimization and hardening before production use.
 
 ## Overview
@@ -83,15 +85,15 @@ The project uses a combination of Tailwind CSS and custom CSS variables. Key var
 The chart accepts data in two formats:
 
 ### CSV format
-\`\`\`csv
+```csv
 timestamp,device_id,device_name,latency_ms,band
 2025-08-13 00:00:00,dev-1,ARCADYAN SPEEDHOMEWLAN,7.0,2.4
-\`\`\`
+```
 
 ### TSV format
-\`\`\`tsv
+```tsv
 2025-08-13 00:00:00	dev-1	ARCADYAN SPEEDHOMEWLAN	7.0
-\`\`\`
+```
 
 ## Component architecture
 
@@ -122,7 +124,7 @@ The application follows a hierarchical component structure:
 ## Known issues
 
 1. Memory leaks:
-  - Resize observers may not be properly cleaned up
+   - Resize observers may not be properly cleaned up
    - Event listeners might persist after component unmount
 
 2. Performance issues:
@@ -140,4 +142,3 @@ The application follows a hierarchical component structure:
    - Each chart maintains its own state and event handlers
    - Multiple charts on the same page may cause performance degradation
    - Recommendation: Implement shared resources pattern for multiple chart instances
-
